@@ -89,7 +89,29 @@ public class NumberTriangle {
      */
     public int retrieve(String path) {
         // TODO implement this method
-        return -1;
+    // treat null or empty path as "stay at this node"
+        if (path == null || path.isEmpty()) return this.root;
+
+        NumberTriangle curr = this;
+        for (int i = 0; i < path.length(); i++) {
+            char ch = path.charAt(i);
+            if (ch == 'l') {
+                if (curr.left == null) {
+                    throw new IllegalArgumentException("Invalid path: no left child at step " + i);
+            }
+                curr = curr.left;
+        }   else if (ch == 'r') {
+                if (curr.right == null) {
+                    throw new IllegalArgumentException("Invalid path: no right child at step " + i);
+            }
+                curr = curr.right;
+        }   else {
+                throw new IllegalArgumentException("Invalid character '" + ch + "' at position " + i);
+        }
+    }
+        return curr.root; // inside same class we can access private field
+
+
     }
 
     /** Read in the NumberTriangle structure from a file.
