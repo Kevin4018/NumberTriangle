@@ -133,7 +133,6 @@ public class NumberTriangle {
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
-
         // TODO define any variables that you want to use to store things
         List<List<NumberTriangle>> levels = new ArrayList<>();
         // will need to return the top of the NumberTriangle,
@@ -143,10 +142,6 @@ public class NumberTriangle {
         String line = br.readLine();
         int row = 0;
         while (line != null) {
-
-            // remove when done; this line is included so running starter code prints the contents of the file
-            System.out.println(line);
-
             // TODO process the line
             String[] parts = line.trim().split("\\s+");
             List<NumberTriangle> currentRow = new ArrayList<>();
@@ -154,8 +149,6 @@ public class NumberTriangle {
                 int val = Integer.parseInt(part);
                 currentRow.add(new NumberTriangle(val));
         }
-
-        // link with previous row if exists
             if (row > 0) {
                 List<NumberTriangle> prevRow = levels.get(row - 1);
                 for (int i = 0; i < prevRow.size(); i++) {
